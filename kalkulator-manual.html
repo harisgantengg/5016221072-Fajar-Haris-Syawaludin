@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Circle Calculation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        /* Styling untuk layout kalkulator dan basemap */
+        .kalkulator-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        /* Bagian kalkulator dan tabel */
+        .kalkulator-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        /* Basemap yang besar dan proporsional */
+        .map-container {
+            flex: 1;
+            height: auto;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px; /* Tinggi peta disamakan dengan tabel */
+        }
+
+        /* Styling footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #004aad;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="Geomatika.png" alt="Logo" />
+            <span class="logo-text">TEKNIK GEOMATIKA ITS</span>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Kalkulator dan Basemap -->
+    <section class="kalkulator-section">
+        <!-- Bagian kalkulator -->
+        <div class="kalkulator-container">
+            <h2>Manual Circle Calculation</h2>
+            <label for="lat1">Latitude Titik 1:</label>
+            <input type="number" id="lat1" placeholder="Masukkan Latitude Titik 1">
+
+            <label for="long1">Longitude Titik 1:</label>
+            <input type="number" id="long1" placeholder="Masukkan Longitude Titik 1">
+
+            <label for="lat2">Latitude Titik 2:</label>
+            <input type="number" id="lat2" placeholder="Masukkan Latitude Titik 2">
+
+            <label for="long2">Longitude Titik 2:</label>
+            <input type="number" id="long2" placeholder="Masukkan Longitude Titik 2">
+
+            <button id="hitungBtn">Hitung</button>
+
+            <!-- Hasil perhitungan -->
+            <div class="result" id="resultSection">
+                <table id="resultTable">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Nilai</th>
+                    </tr>
+                    <tr>
+                        <td>Jarak</td>
+                        <td id="jarak">-</td>
+                    </tr>
+                    <tr>
+                        <td>Initial Bearing</td>
+                        <td id="initialBearing">-</td>
+                    </tr>
+                    <tr>
+                        <td>Final Bearing</td>
+                        <td id="finalBearing">-</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bagian basemap -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 FAJAR HARIS SYAWALUDIN</p>
+    </footer>
+
+    <script>
+        document.getElementById('hitungBtn').addEventListener('click', function() {
+            // Ambil koordinat dari input
+            const lat1 = parseFloat(document.getElementById('lat1').value);
+            const lon1 = parseFloat(document.getElementById('long1').value);
+            const lat2 = parseFloat(document.getElementById('lat2').value);
+            const lon2 = parseFloat(document.getElementById('long2').value);
+
+            // Validasi input
+            if (isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
+                alert('Masukkan semua koordinat dengan benar!');
+                return;
+            }
+
+            // Menghitung jarak dan bearing
+            const jarak = calculateDistance(lat1, lon1, lat2, lon2);
+            const initialBearing = calculateBearing(lat1, lon1, lat2, lon2);
+            const finalBearing = calculateBearing(lat2, lon2, lat1, lon1);
+
+            // Menampilkan hasil
+            document.getElementById('jarak').textContent = jarak.toFixed(2) + ' km';
+            document.getElementById('initialBearing').textContent = initialBearing.toFixed(2) + '°';
+            document.getElementById('finalBearing').textContent = finalBearing.toFixed(2) + '°';
+
+            // Visualisasi Globe
+            const trace1 = {
+                type: "scattergeo",
+                mode: "markers+text",
+                lon: [lon1, lon2],
+                lat: [lat1, lat2],
+                marker: {
+                    size: 10,
+                    color: "red",
+                },
+                text: ["Titik 1", "Titik 2"],
+                textposition: "top right",
+            };
+
+            const trace2 = {
+                type: "scattergeo",
+                mode: "lines",
+                lon: [lon1, lon2],
+                lat: [lat1, lat2],
+                line: { width: 2, color: "red" },
+                name: "Jalur",
+            };
+
+            const layout = {
+                geo: {
+                    projection: { type: "orthographic" },
+                    showland: true,
+                    landcolor: "lightgray",
+                    showocean: true,
+                    oceancolor: "lightblue",
+                    showlakes: false,
+                },
+                margin: { l: 0, r: 0, t: 0, b: 0 },
+            };
+
+            const data = [trace1, trace2];
+            Plotly.newPlot("map", data, layout);
+        });
+
+        // Fungsi untuk menghitung jarak
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Fungsi untuk menghitung initial bearing
+        function calculateBearing(lat1, lon1, lat2, lon2) {
+            const y = Math.sin(lon2 - lon1) * Math.cos(lat2);
+            const x = Math.cos(lat1) * Math.sin(lat2) -
+                      Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+            const brng = Math.atan2(y, x);
+            return (brng * 180 / Math.PI + 360) % 360;
+        }
+    </script>
+</body>
+</html>

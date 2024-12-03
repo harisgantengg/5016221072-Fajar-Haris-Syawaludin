@@ -1,0 +1,354 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #004aad;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li {
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    background-image: url('Bumi.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+    position: relative;
+    height: 300px;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    z-index: 1;
+    position: relative;
+}
+
+/* Content Section */
+.content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 30%;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+}
+
+/* Button Styling */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004aad;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #00347d;
+}
+
+.info {
+    background-color: #f4f4f9;
+    padding: 40px;
+    margin-top: 40px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+.info p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Verdana', sans-serif;
+    text-align: justify;
+}
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #004aad;
+    color: white;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Kalkulator Manual Styling */
+.kalkulator-container {
+    max-width: 400px;  /* Menurunkan lebar maksimum */
+    margin: 30px 0 30px 20px;  /* Margin atas dan kiri */
+    padding: 15px;  /* Mengurangi padding */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.kalkulator-container h2 {
+    font-size: 1.5rem;  /* Mengurangi ukuran font judul */
+    margin-bottom: 15px;  /* Mengurangi jarak bawah judul */
+}
+
+.kalkulator-container label {
+    display: block;
+    margin: 8px 0 5px;  /* Menurunkan jarak label */
+    font-weight: bold;
+}
+
+.kalkulator-container input {
+    width: 100%;
+    padding: 10px;  /* Mengurangi padding input */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 12px;  /* Mengurangi jarak input */
+    font-size: 0.9rem;  /* Menurunkan ukuran font input */
+}
+
+.kalkulator-container button {
+    background-color: #004aad;
+    color: white;
+    padding: 10px 18px;  /* Mengurangi padding button */
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;  /* Mengurangi ukuran font button */
+    cursor: pointer;
+    width: 100%;
+}
+
+.kalkulator-container button:hover {
+    background-color: #00347d;
+}
+
+.kalkulator-container .result {
+    margin-top: 15px;  /* Mengurangi jarak atas result */
+    font-size: 1rem;  /* Menurunkan ukuran font result */
+    color: #333;
+}
+
+.kalkulator-container .result span {
+    font-weight: bold;
+    color: #004aad;
+}
+
+/* Input Section Styling */
+.input-section {
+    margin-bottom: 15px;  /* Mengurangi margin bottom */
+}
+
+.input-section label {
+    display: block;
+    font-size: 1rem;  /* Menurunkan ukuran font label */
+    color: #333;
+    margin: 8px 0 5px;  /* Mengurangi jarak label */
+}
+
+.input-section input {
+    width: 100%;
+    padding: 8px;  /* Mengurangi padding input */
+    margin-bottom: 8px;  /* Mengurangi jarak input */
+    font-size: 0.9rem;  /* Menurunkan ukuran font input */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.input-section button {
+    width: 100%;
+    padding: 8px;  /* Mengurangi padding button */
+    font-size: 1rem;  /* Menurunkan ukuran font button */
+    color: white;
+    background-color: #004aad;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-section button:hover {
+    background-color: #003b7d;
+}
+
+/* Result Table Styling */
+#resultTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;  /* Mengurangi jarak atas tabel */
+}
+
+#resultTable th, #resultTable td {
+    padding: 8px;  /* Mengurangi padding tabel */
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#resultTable th {
+    background-color: #004aad;
+    color: white;
+}
+
+#resultTable td {
+    font-size: 0.9rem;  /* Menurunkan ukuran font tabel */
+    color: #333;
+}
+
+#resultTable td span {
+    font-weight: bold;
+    color: #004aad;
+}
+
+/* Kalkulator Pilih Lokasi Styling */
+/* Map Container */
+#map {
+    height: 100vh;
+    width: 70%;
+    float: right;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 30%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Input Section */
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section label {
+    display: block;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 10px 0 5px;
+}
+
+.input-section span {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Result Table Styling */
+#resultTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#resultTable th, #resultTable td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+#resultTable th {
+    background-color: #004aad;
+    color: white;
+}
+
+#resultTable td {
+    font-size: 1rem;
+    color: #333;
+}
+
+.footer {
+    background-color: #004aad;
+}

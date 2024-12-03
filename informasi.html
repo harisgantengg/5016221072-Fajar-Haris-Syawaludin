@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi - Website</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #004aad;
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav ul li {
+            margin: 0 15px;
+        }
+
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            background-image: url('Bumi.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            color: white;
+            position: relative;
+            height: 300px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #004aad;
+            color: white;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .content {
+                padding: 10px;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="Geomatika.png" alt="Logo">
+            <div class="logo-text">Nama Website</div>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Informasi Website</h1>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content">
+        <div class="card">
+            <h2>Nama Pembuat</h2>
+            <p>Fajar Haris Syawaludin</p>
+        </div>
+        <div class="card">
+            <h2>Tahun Pembuatan</h2>
+            <p>2024</p>
+        </div>
+        <div class="card">
+            <h2>Deskripsi Website</h2>
+            <p>Web Perhitungan Great Circle Distance Calculator adalah sebuah alat yang digunakan untuk menghitung jarak terpendek antara dua titik di permukaan bumi yang terletak pada garis lintang dan bujur tertentu. Jarak ini dihitung sepanjang permukaan bola bumi, bukan sepanjang garis lurus dalam ruang (jarak Euclidean). Perhitungan ini mengacu pada konsep Great Circle, yang merupakan lingkaran yang membelah bola bumi menjadi dua bagian yang sama besar.</p>
+            <p>Website ini terus berkembang dengan penambahan fitur-fitur baru untuk meningkatkan pengalaman pengguna dan memenuhi kebutuhan informasi yang lebih luas.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Fajar Haris Syawaludin. Semua hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
